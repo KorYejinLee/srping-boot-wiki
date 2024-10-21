@@ -3,12 +3,13 @@ package com.example.wiki;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 class WikiApplicationTests {
@@ -16,14 +17,16 @@ class WikiApplicationTests {
 	@Autowired
 	private QuestionRepository questionRepository;
 
-	@Autowired
-	private AnswerRepository answerRepository; // AnswerRepository의 객체를 @Autowired를 통해 주입
-
-	@Test // testJpa 메서드가 테스트 매서드임을 나타냄
+	@Transactional
+	@Test
 	void testJpa() {
-		Optional<Answer> oa = this.answerRepository.findById(2);
-		assertTrue(oa.isPresent());
-		Answer a = oa.get();
-		assertEquals(2, a.getQuestion().getId());
+		Optional<Question> oq = this.questionRepository.findById(2);
+		assertTrue(oq.isPresent());
+		Question q = oq.get();
+
+		List<Answer> answerList = q.getAnswerList();
+
+		assertEquals(1, answerList.size());
+		assertEquals("네, 자동으로 생성됩니다.", answerList.get(0).getContent());
 	}
 }
