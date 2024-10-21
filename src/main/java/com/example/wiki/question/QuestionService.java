@@ -1,5 +1,6 @@
 package com.example.wiki.question;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,5 +28,15 @@ public class QuestionService {
             throw new DataNotFoundException("question not found");
             // id값에 해당하는 질문 데이터가 없을 경우에는 예외 클래스인 DataNotFoundException이 실행
         }
+    }
+
+    public void create(String subject, String content) {
+        Question q = Question.builder()
+                .subject(subject)
+                .content(content)
+                .createDate(LocalDateTime.now())
+                .build();
+
+        this.questionRepository.save(q);
     }
 }

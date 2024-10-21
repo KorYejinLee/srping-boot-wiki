@@ -42,7 +42,7 @@ public class QuestionController {
 
     @PostMapping("/create") // 405('Method Not Allowed' ERROR 해결
     public String questionCreate(@RequestParam(value="subject") String subject, @RequestParam(value="content") String content) {
-        // TODO 질문을 저장한다.
+        this.questionService.create(subject, content);
         return "redirect:/question/list"; // 질문 저장후 질문목록으로 이동
     }
 
