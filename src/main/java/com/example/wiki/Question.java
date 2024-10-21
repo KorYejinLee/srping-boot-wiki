@@ -12,12 +12,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.Builder; // 상속과 함께 사용시
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Builder // Builder 생성자를 가짐
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor // 그래서 달아줌
 @Entity
@@ -38,4 +38,5 @@ public class Question {
     // 질문을 삭제하면 그에 달린 답변들도 모두 삭제
     // Answer 엔티티에서 Question 엔티티를 참조한 속성인 question을 mappedBy에 전달
     private List<Answer> answerList;
+
 }

@@ -1,8 +1,8 @@
 package com.example.wiki;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,15 @@ class SbbApplicationTests {
 
 	@Test // testJpa 메서드가 테스트 매서드임을 나타냄
 	void testJpa() {
-		List<Question> qList = this.questionRepository.findBySubjectLike("sbb%");
-		Question q = qList.get(0);
-		assertEquals("sbb가 무엇인가요?", q.getSubject());
+		Optional<Question> oq = this.questionRepository.findById(1);
+		assertTrue(oq.isPresent());
+		Question q = oq.get(); // 기존 객체 가져오기
+		// 기존 객체를 기반으로 수정된 새로운 객체 생성
+		Question updatedQuestion = q.toBuilder()
+				.subject("수정된 제목") // 제목만 수정
+				.build(); // 새로운 객체 생성
+
+		// 수정된 객체 저장
+		this.questionRepository.save(updatedQuestion);
 	}
 }
