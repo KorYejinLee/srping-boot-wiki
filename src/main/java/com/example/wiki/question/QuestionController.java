@@ -2,8 +2,10 @@ package com.example.wiki.question;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class QuestionController {
         // QuestionController가 리포지터리 대신 서비스를 사용
         model.addAttribute("questionList", questionList);
         // Model 객체는 자바 클래스(Java class)와 템플릿(template) 간의 연결 고리 역할
+
         return "question_list";
     }
 
@@ -32,6 +35,7 @@ public class QuestionController {
         // Question 객체를 템플릿에 전달
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
+
         return "question_detail";
     }
 
@@ -41,8 +45,12 @@ public class QuestionController {
     }
 
     @PostMapping("/create") // 405('Method Not Allowed' ERROR 해결
-    public String questionCreate(@RequestParam(value="subject") String subject, @RequestParam(value="content") String content) {
-        this.questionService.create(subject, content);
+    public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "question_form";
+        }
+        this.questionService.create(questionForm.getSubject(), questionForm.getContent());
+
         return "redirect:/question/list"; // 질문 저장후 질문목록으로 이동
     }
 
@@ -50,7 +58,7 @@ public class QuestionController {
     // (단, 매개변수의 형태가 다른 경우에 가능하다)
     // 이와 같이 자바에서 한 클래스에서 동일한 메서드명을 사용할 수 있는 것을 메서드 오버라이딩(overloading)이라고 한다.
 
-    // question_form.html에서 입력 항목으로 사용한 subject, content의 이름과
-    // RequestParam이 value 값이 동일해야 함을 기억하자
-    // 그래야 입력 항목으 값을 제대로 얻을 수 있다
+    // questionCreate 메서드의 매개변수를 subject, content 대신 QuestionForm 객체로 변경했다
+    // subject, content 항목을 지닌 폼이 전송되면 QuestionForm의 subject, content 속성이 자동으로 바인딩 된다
+    // 이렇게 이름이 동일하면 함께 연결되어 묶이는 것이 바로 폼의 바인딩 기능이다
 }
