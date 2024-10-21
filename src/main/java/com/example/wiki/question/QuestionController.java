@@ -24,4 +24,9 @@ public class QuestionController {
         // Model 객체는 자바 클래스(Java class)와 템플릿(template) 간의 연결 고리 역할
         return "question_list";
     }
+
+    @GetMapping(value = "/question/detail/{id}")
+    public String detail(Model model, @PathVariable("id") Integer id) {
+        return "question_detail";
+    }
 }
