@@ -6,5 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 // CRUD 작업을 처리하는 메서드들을 이미 내장하고 있어 데이터 관리 작업을 좀 더 편리하게 처리 가능
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
+    Question findBySubject(String subject);
+
 }
 

@@ -16,12 +16,12 @@ class SbbApplicationTests {
 
 	@Test // testJpa 메서드가 테스트 매서드임을 나타냄
 	void testJpa() {
-		Optional<Question> oq = this.questionRepository.findById(1);
-		// Return type Question이 아닌 Optional 이다
-		// Optional은 그 값을 처리하기 위한(null값을 유연하게 처리하기 위한) 클래스
-		if(oq.isPresent()) { // 값이 존재하는지 확인
-			Question q = oq.get();
-			assertEquals("sbb가 무엇인가요?", q.getSubject());
-		}
+		Question q = this.questionRepository.findBySubject("sbb가 무엇인가요?");
+		assertEquals(1, q.getId());
 	}
+
+	// '인터페이스에 findBySubject'라는 메서드를 선언만 하고 구현하지 않았는데 도대체 어떻게 실행되는 거지?'
+	// 이러한 마법은 JAP에 리포지터리의 메서드명을 분석하여 쿼리를 만들고 실행하는 기능이 있기 때문에 가능하다
+	// 즉 findBy + 엔티티의 속성명(예를 들어 findBySubject)와 같은 리포지터리의 메서드를 작성하면
+	// 입력한 속성의 값으로 데이터를 조회할 수 있다!
 }
