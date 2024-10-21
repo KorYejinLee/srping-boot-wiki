@@ -8,8 +8,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
     @GetMapping("/sbb")
-    @ResponseBody // URL 요청에 대한 응답으로 문자열을 리턴하라
+    @ResponseBody
     public String index() {
-        return "안녕하세요 sbb에 오신 것을 환영합니다.";
+        return "안녕하세요 sbb에 오신것을 환영합니다.";
+    }
+
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/question/list"; // /question/list URL로 페이지를 리다이렉트하라는 명령어
+        // 여기서 리다이렉트란 클라이언트가 요청하면 새로운 URL을 전송하는 것을 의미한다
     }
 }
