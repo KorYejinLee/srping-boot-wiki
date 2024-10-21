@@ -21,7 +21,7 @@ class SbbApplicationTests {
 		Question q = oq.get(); // 기존 객체 가져오기
 		// 기존 객체를 기반으로 수정된 새로운 객체 생성
 		Question updatedQuestion = q.toBuilder()
-				.subject("수정된 제목") // 제목만 수정
+				.subject("수정된 제목입니다") // 제목만 수정
 				.build(); // 새로운 객체 생성
 
 		// 수정된 객체 저장
