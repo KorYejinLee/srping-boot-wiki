@@ -1,23 +1,17 @@
 package com.example.wiki;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Getter
-@Builder
 public class HelloLombok {
-    private String hello;
-    private int lombok;
+    private final String hello;
+    private final int lombok;
 
     public static void main(String[] args) {
-
-        HelloLombok helloLombok = HelloLombok.builder()
-                .hello("헬로")
-                .lombok(5)
-                .build();
-
+        HelloLombok helloLombok = new HelloLombok("헬로", 5);
         System.out.println(helloLombok.getHello());
         System.out.println(helloLombok.getLombok());
-
     }
 }
