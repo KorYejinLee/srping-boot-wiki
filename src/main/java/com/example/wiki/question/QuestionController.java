@@ -27,7 +27,8 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/question/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id) { // id값을 얻어오기
+    public String detail(Model model, @PathVariable("id") Integer id) { // id값을 얻어오기 // 404 ERROR 해결
+        // Question 객체를 템플릿에 전달
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
