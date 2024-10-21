@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Question Detail</title>
-        <h1 th:text="${question.subject}"></h1>
-        <div th:text="${question.content}"></div>
+    <h1 th:text="${question.subject}"></h1>
+    <div th:text="${question.content}"></div>
+
+    <form th:action="@{|/answer/create/${question.id}|}" method="post">
+        <!--URL이 post 방식으로 호출-->
+        <textarea name="content" id="content" rows="15"></textarea>
+        <input type="submit" value="답변등록">
+        <!--[답변등록] 버튼을 누르면 전송되는 form의 action은 타임리프의 th:action에서 생성-->
+    </form>
 </head>
 <body>
 
