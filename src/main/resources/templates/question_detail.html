@@ -8,9 +8,16 @@
 
     <form th:action="@{|/answer/create/${question.id}|}" method="post">
         <!--URL이 post 방식으로 호출-->
+        <h5 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+        <div>
+            <ul>
+                <li th:each="answer : ${question.answerList}" th:text="${answer.content}"></li>
+            </ul>
+        </div>
         <textarea name="content" id="content" rows="15"></textarea>
         <input type="submit" value="답변등록">
         <!--[답변등록] 버튼을 누르면 전송되는 form의 action은 타임리프의 th:action에서 생성-->
+
     </form>
 </head>
 <body>
