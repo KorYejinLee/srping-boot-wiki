@@ -1,7 +1,9 @@
 package com.example.wiki.question;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.example.wiki.DataNotFoundException;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,15 @@ public class QuestionService {
 
     public List<Question> getList() {
         return this.questionRepository.findAll();
-        // 이전에 QuestionController에서 사용했던 부분을 그대로 옮긴 것을 알 수 있다
+    }
+
+    public Question getQuestion(Integer id) {
+        Optional<Question> question = this.questionRepository.findById(id);
+        if (question.isPresent()) { // 해당 데이터(여기서는 id값)가 존재하는지 검사
+            return question.get();
+        } else {
+            throw new DataNotFoundException("question not found");
+            // id값에 해당하는 질문 데이터가 없을 경우에는 예외 클래스인 DataNotFoundException이 실행
+        }
     }
 }

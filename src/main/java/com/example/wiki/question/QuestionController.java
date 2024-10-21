@@ -20,13 +20,16 @@ public class QuestionController {
     @GetMapping("/question/list")
     public String list(Model model) {
         List<Question> questionList = this.questionService.getList();
+        // QuestionController가 리포지터리 대신 서비스를 사용
         model.addAttribute("questionList", questionList);
         // Model 객체는 자바 클래스(Java class)와 템플릿(template) 간의 연결 고리 역할
         return "question_list";
     }
 
     @GetMapping(value = "/question/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id) {
+    public String detail(Model model, @PathVariable("id") Integer id) { // id값을 얻어오기
+        Question question = this.questionService.getQuestion(id);
+        model.addAttribute("question", question);
         return "question_detail";
     }
 }
