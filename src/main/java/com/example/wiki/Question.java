@@ -11,11 +11,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Builder
+@Builder // Builder 생성자를 가짐
+@NoArgsConstructor
+@AllArgsConstructor // 그래서 달아줌
 @Entity
 public class Question {
     @Id
