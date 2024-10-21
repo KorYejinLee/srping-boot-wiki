@@ -37,6 +37,10 @@ dependencies {
 	/*JUnit - 리포지터리만 개별적으로 실행해 테스트*/
 	testImplementation 'org.junit.jupiter:junit-jupiter'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	/*템플릿 설정*/
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 }
 
 test {
