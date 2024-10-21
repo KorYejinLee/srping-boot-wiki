@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RequiredArgsConstructor // questionRepository 객체를 주입
 // final이 붙은 속성을 포함하는 생성자를 자동으로 만들어주는 역할
