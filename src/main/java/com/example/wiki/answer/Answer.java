@@ -1,7 +1,8 @@
-package com.example.wiki;
+package com.example.wiki.answer;
 
 import java.time.LocalDateTime;
 
+import com.example.wiki.question.Question;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

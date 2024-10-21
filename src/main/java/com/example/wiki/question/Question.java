@@ -1,8 +1,9 @@
-package com.example.wiki;
+package com.example.wiki.question;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.example.wiki.answer.Answer;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

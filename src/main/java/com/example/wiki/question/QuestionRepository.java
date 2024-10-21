@@ -1,4 +1,4 @@
-package com.example.wiki;
+package com.example.wiki.question;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
