@@ -15,3 +15,7 @@ spring:
         show_sql: true
         default_batch_fetch_size: 1000
 
+logging:
+  level:
+    org.hibernate.SQL: DEBUG # 쿼리 실행 중에 발생하는 오류 확인
+    org.hibernate.type: TRACE
