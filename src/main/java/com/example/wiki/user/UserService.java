@@ -13,7 +13,6 @@ public class UserService {
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public SiteUser create(String username, String email, String password) {
-
         SiteUser user = SiteUser.builder()
                 .username(username)
                 .email(email)
