@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.wiki.DataNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -38,5 +41,11 @@ public class QuestionService {
                 .build();
 
         this.questionRepository.save(q);
+    }
+
+    public Page<Question> getList(int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+        // page는 조회할 페이지의 번호이고 10은 한 페이지에 보여 줄 게시물의 개수를 의미한다
+        return this.questionRepository.findAll(pageable);
     }
 }

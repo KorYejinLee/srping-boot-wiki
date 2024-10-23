@@ -9,7 +9,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="question, loop : ${questionList}"> <!--Java의 for each와 같다고 생각하면 됨-->
+        <tr th:each="question, loop : ${paging}"> <!--Java의 for each와 같다고 생각하면 됨-->
             <td th:text="${loop.count}"></td>
             <!--Java 코드와 연결되는 부분-->
             <td>
