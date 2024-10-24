@@ -58,4 +58,14 @@ public class QuestionService {
         // 여기서 쓰인 desc는 내림차순을 의미하고, asc는 오름차순을 의미한다
         return this.questionRepository.findAll(pageable);
     }
+
+    public void modify(Question question, String subject, String content) {
+        Question updatedQuestion = question.toBuilder()
+                .subject(subject)
+                .content(content)
+                .modifyDate(LocalDateTime.now())
+                .build();
+
+        this.questionRepository.save(updatedQuestion);
+    }
 }
