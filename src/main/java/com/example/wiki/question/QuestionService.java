@@ -59,8 +59,7 @@ public class QuestionService {
         // Sort 객체를 전달해야 한다
         // 만약 작성 일시 외에 정렬 조건을 추가하고 싶다면 sort.add 메서드를 활용해 sorts 리스트에 추가하면 된다
         // 여기서 쓰인 desc는 내림차순을 의미하고, asc는 오름차순을 의미한다
-        Specification<Question> spec = search(kw);
-        return this.questionRepository.findAll(spec, pageable);
+        return this.questionRepository.findAllByKeyword(kw, pageable);
     }
 
     public void modify(Question question, String subject, String content) {
