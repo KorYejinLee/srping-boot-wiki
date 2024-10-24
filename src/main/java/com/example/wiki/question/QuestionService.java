@@ -68,4 +68,8 @@ public class QuestionService {
 
         this.questionRepository.save(updatedQuestion);
     }
+
+    public void delete(Question question) {
+        this.questionRepository.delete(question);
+    }
 }
