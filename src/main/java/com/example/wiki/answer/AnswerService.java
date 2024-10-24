@@ -45,4 +45,7 @@ public class AnswerService {
         this.answerRepository.save(updatedAnswer);
     }
 
+    public void delete(Answer answer) {
+        this.answerRepository.delete(answer);
+    }
 }
