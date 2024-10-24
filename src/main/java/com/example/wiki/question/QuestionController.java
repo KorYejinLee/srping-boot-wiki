@@ -26,7 +26,6 @@ public class QuestionController {
     private final QuestionService questionService;
     private final UserService userService;
 
-    @PreAuthorize("isAuthenticated()")
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
         Page<Question> paging = this.questionService.getList(page);
@@ -36,7 +35,6 @@ public class QuestionController {
         return "question_list";
     }
 
-    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) { // id값을 얻어오기 // 404 ERROR 해결
         // Question 객체를 템플릿에 전달
@@ -46,11 +44,13 @@ public class QuestionController {
         return "question_detail";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/create") // 404 ERROR 해결
     public String questionCreate(QuestionForm questionForm) {
         return "question_form";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/create") // 405('Method Not Allowed' ERROR 해결
     public String questionCreate(@Valid QuestionForm questionForm,
                                  BindingResult bindingResult, Principal principal) {    // question_form.html은 [질문 등록하기] 버튼을 통해 GET 방식으로 URL이 요청되더라도
