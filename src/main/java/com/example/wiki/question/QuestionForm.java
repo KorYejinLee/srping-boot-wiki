@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
+@Builder(toBuilder = true)
 public class QuestionForm {
     @NotEmpty(message="제목은 필수항목입니다.") // 화면에 표시할 오류 메시지
     // 빈 값을 허용하지 않겠다
