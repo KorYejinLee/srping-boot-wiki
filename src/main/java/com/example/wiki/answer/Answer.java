@@ -3,6 +3,7 @@ package com.example.wiki.answer;
 import java.time.LocalDateTime;
 
 import com.example.wiki.question.Question;
+import com.example.wiki.user.SiteUser;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,4 +35,7 @@ public class Answer {
     // 실제 데이터베이스에서는 왜래키(foreign key) 관계가 생성
     // 부모는 Question
     // 자식은 Answer
+
+    @ManyToOne
+    private SiteUser author;
 }
