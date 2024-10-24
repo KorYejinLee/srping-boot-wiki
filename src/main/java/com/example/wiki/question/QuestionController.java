@@ -88,6 +88,7 @@ public class QuestionController {
                 .subject(question.getSubject())
                 .content(question.getContent())
                 .build();
+
         return "question_form";
     }
 
