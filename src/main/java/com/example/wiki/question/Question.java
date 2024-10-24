@@ -4,13 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.example.wiki.answer.Answer;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import com.example.wiki.user.SiteUser;
+import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder; // 상속과 함께 사용시
@@ -40,4 +35,6 @@ public class Question {
     // Answer 엔티티에서 Question 엔티티를 참조한 속성인 question을 mappedBy에 전달
     private List<Answer> answerList;
 
+    @ManyToOne
+    private SiteUser author;
 }
