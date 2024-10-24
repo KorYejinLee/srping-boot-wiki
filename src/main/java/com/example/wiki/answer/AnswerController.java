@@ -6,6 +6,7 @@ import com.example.wiki.user.SiteUser;
 import com.example.wiki.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +28,7 @@ public class AnswerController {
 
 
     // POST 요청을 처리하는 경우에 사용
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/{id}") // POST 방식은 주로 데이터를 저장하는 용도로 사용한다는 점 상기
     public String createAnswer(Model model, @PathVariable("id") Integer id,
                                @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {

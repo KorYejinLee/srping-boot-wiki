@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +26,7 @@ public class QuestionController {
     private final QuestionService questionService;
     private final UserService userService;
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
         Page<Question> paging = this.questionService.getList(page);
@@ -34,6 +36,7 @@ public class QuestionController {
         return "question_list";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) { // id값을 얻어오기 // 404 ERROR 해결
         // Question 객체를 템플릿에 전달
