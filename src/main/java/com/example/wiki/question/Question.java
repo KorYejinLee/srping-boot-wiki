@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder; // 상속과 함께 사용시
 import lombok.Getter;
+import java.util.Set;
 import lombok.NoArgsConstructor;
 
 @Getter
@@ -39,4 +40,7 @@ public class Question {
     private SiteUser author;
 
     private LocalDateTime modifyDate;
+
+    @ManyToMany
+    Set<SiteUser> voter;
 }
