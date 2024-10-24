@@ -2,6 +2,7 @@ package com.example.wiki.question;
 
 import java.util.List;
 
+import com.example.wiki.answer.AnswerForm;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id) { // id값을 얻어오기 // 404 ERROR 해결
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) { // id값을 얻어오기 // 404 ERROR 해결
         // Question 객체를 템플릿에 전달
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
