@@ -35,7 +35,7 @@ jobs:
             git pull origin main
             echo "$APPLICATION_PROPERTIES" > src/main/resources/application.yml
             echo "$DOCKER_COMPOSE_YML" > docker-compose.yml
-            sudo ./gradlew clean build -x test
+            sudo ./gradlew clean build 
 
             # 실행 중인 컨테이너 종료
             sudo docker stop springboot
@@ -46,7 +46,7 @@ jobs:
             sudo docker rm db-mysql
 
             # container 구동
-            sudo docker-compose up --build -d
+            sudo docker-compose up -d
 
             # log
             sudo docker ps -a
