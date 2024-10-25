@@ -36,4 +36,3 @@ jobs:
             git pull origin main
             echo "$APPLICATION_PROPERTIES" > src/main/resources/application.yml
             echo "$DOCKER_COMPOSE_YML" > docker-compose.yml
-g
