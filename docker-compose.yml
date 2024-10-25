@@ -31,7 +31,7 @@ services:
     restart: always
     container_name: springboot
     ports:
-      - "8080:8080"
+      - "8080:8080jaj"
     depends_on:
       - database
     environment:
