@@ -5,6 +5,7 @@ on:
     branches:
       - main
 
+
 jobs:
   Deploy:
     runs-on: ubuntu-latest
@@ -34,4 +35,4 @@ jobs:
             rm -rf docker-compose.yml
             git pull origin main
             echo "$APPLICATION_PROPERTIES" > src/main/resources/application.yml
-            echo "$DOCKER_COMPOSE_YML" > docker-compose.yml
+            echo "$DOCKER_COMPOSE_YML" > ./docker-compose.yml

@@ -36,7 +36,7 @@ out/
 ### VS Code ###
 .vscode/
 
-### mysql 정보 ###
+### 프로젝트 환경 구성 ###
 application.yml
 docker-compose.yml
 data/
