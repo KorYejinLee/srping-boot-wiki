@@ -30,4 +30,9 @@ jobs:
           script: |
             # 환경 설정
             cd /home/ubuntu/spring-boot
-            
+            rm -rf src/main/resources/application.yml
+            rm -rf docker-compose.yml
+            git pull origin main
+            echo "$APPLICATION_PROPERTIES" > src/main/resources/application.yml
+            echo "$DOCKER_COMPOSE_YML" > docker-compose.yml
+            sudo ./gradlew clean build
