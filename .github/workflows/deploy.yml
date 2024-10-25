@@ -31,24 +31,4 @@ jobs:
           script: |
             # 환경 설정
             cd /home/ubuntu/spring-boot
-            rm -rf src/main/resources/application.yml
-            rm -rf docker-compose.yml
-            git pull origin main
-            echo "$APPLICATION_PROPERTIES" > src/main/resources/application.yml
-            echo "$DOCKER_COMPOSE_YML" > docker-compose.yml
-            sudo ./gradlew clean build 
-
-            # 실행 중인 컨테이너 종료
-            sudo docker stop springboot
-            sudo docker stop db-mysql
-
-            # 실행 중인 컨테이너 삭제
-            sudo docker rm springboot
-            sudo docker rm db-mysql
-
-            # container 구동
-            sudo docker-compose up -d
-
-            # log
-            sudo docker ps -a
-            nohup java -jar build/libs/*SNAPSHOT.jar > ./output.log 2 >& 1 &
+            
