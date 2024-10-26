@@ -13,29 +13,29 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Builder(toBuilder = true)
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private final Integer id;
 
     @Column(columnDefinition = "TEXT")
-    private String content;
+    private final String content;
 
-    private LocalDateTime createDate;
+    private final LocalDateTime createDate;
 
     @ManyToOne // N:1
-    private Question question;
+    private final Question question;
     // 실제 데이터베이스에서는 왜래키(foreign key) 관계가 생성
     // 부모는 Question
     // 자식은 Answer
 
     @ManyToOne
-    private SiteUser author;
+    private final SiteUser author;
 
-    private LocalDateTime modifyDate;
+    private final LocalDateTime modifyDate;
 
     @ManyToMany
     Set<SiteUser> voter;

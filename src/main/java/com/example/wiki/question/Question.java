@@ -15,31 +15,31 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Builder(toBuilder = true)
-@NoArgsConstructor
-@AllArgsConstructor // 그래서 달아줌
+// @NoArgsConstructor
+// @AllArgsConstructor
 @Entity
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private final Integer id;
 
     @Column(length = 200)
-    private String subject;
+    private final String subject;
 
     @Column(columnDefinition = "TEXT")
-    private String content;
+    private final String content;
 
-    private LocalDateTime createDate;
+    private final LocalDateTime createDate;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     // 질문을 삭제하면 그에 달린 답변들도 모두 삭제
     // Answer 엔티티에서 Question 엔티티를 참조한 속성인 question을 mappedBy에 전달
-    private List<Answer> answerList;
+    private final List<Answer> answerList;
 
     @ManyToOne
-    private SiteUser author;
+    private final SiteUser author;
 
-    private LocalDateTime modifyDate;
+    private final LocalDateTime modifyDate;
 
     @ManyToMany
     Set<SiteUser> voter;
