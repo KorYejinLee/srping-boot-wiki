@@ -32,8 +32,6 @@ public class Question {
     private final LocalDateTime createDate;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-    // 질문을 삭제하면 그에 달린 답변들도 모두 삭제
-    // Answer 엔티티에서 Question 엔티티를 참조한 속성인 question을 mappedBy에 전달
     private final List<Answer> answerList;
 
     @ManyToOne

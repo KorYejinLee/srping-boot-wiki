@@ -26,11 +26,8 @@ public class Answer {
 
     private final LocalDateTime createDate;
 
-    @ManyToOne // N:1
+    @ManyToOne
     private final Question question;
-    // 실제 데이터베이스에서는 왜래키(foreign key) 관계가 생성
-    // 부모는 Question
-    // 자식은 Answer
 
     @ManyToOne
     private final SiteUser author;
