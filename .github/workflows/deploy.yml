@@ -32,6 +32,6 @@ jobs:
             cd /home/ubuntu/wiki/srping-boot-wiki
             rm -rf src/main/resources/application.yml
             rm -rf docker-compose.yml
-            git pull origin mainsrc/
+            git pull origin main
             echo "$APPLICATION_PROPERTIES" > main/resources/application.yml
             echo "$DOCKER_COMPOSE_YML" > docker-compose.yml
