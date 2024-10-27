@@ -1,0 +1,37 @@
+name: Deploy To EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: docker hub 로그인
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_ID }}
+          password: ${{ secrets.DOCKER_PW }}
+
+      - name: SSH(원격접속)로 EC2에 접속하기
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          APPLICATION_PROPERTIES: ${{ secrets.APPLICATION_PROPERTIES }}
+          DOCKER_COMPOSE_YML: ${{ secrets.DOCKER_COMPOSE_YML }}
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          envs:
+            APPLICATION_PROPERTIES, DOCKER_COMPOSE_YML
+          scripts_step: true
+          script: |
+            # 환경 설정
+            cd /home/ubuntu/spring-boot
+            rm -rf src/main/resources/application.yml
+            rm -rf docker-compose.yml
+            git pull origin main
+            echo "$APPLICATION_PROPERTIES" > src/main/resources/application.yml
+            echo "$DOCKER_COMPOSE_YML" > docker-compose.yml
