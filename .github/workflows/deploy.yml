@@ -29,7 +29,7 @@ jobs:
           scripts_step: true
           script: |
             # 환경 설정
-            cd /home/ubuntu/wikigit a
+            cd /home/ubuntu/wiki
             rm -rf src/main/resources/application.yml
             rm -rf docker-compose.yml
             git pull origin main
