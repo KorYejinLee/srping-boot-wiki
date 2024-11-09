@@ -25,8 +25,6 @@ public class AnswerController {
     private final AnswerService answerService;
     private final UserService userService;
 
-
-    // POST 요청을 처리하는 경우에 사용
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/{id}") // POST 방식은 주로 데이터를 저장하는 용도로 사용한다는 점 상기
     public String createAnswer(Model model, @PathVariable("id") Integer id,

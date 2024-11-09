@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Builder(toBuilder = true)
-//@NoArgsConstructor
+// @NoArgsConstructor
 //@AllArgsConstructor
 @Entity
 public class Answer {

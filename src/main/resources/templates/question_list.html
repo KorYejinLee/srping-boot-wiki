@@ -22,18 +22,15 @@
         </thead>
         <tbody>
         <tr class="text-center" th:each="question, loop : ${paging}">
-        <!--Java의 for each와 같다고 생각하면 됨-->
             <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
-            <!--Java 코드와 연결되는 부분-->
             <td class="text-start">
                 <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+                <!--|{}| /question/detail/ 문자열과 ${question.id}와 같은 자바 객체의 값을 더할 때 반드시 필요하다-->
                 <span class="text-danger small ms-2"
                       th:if="${#lists.size(question.answerList) > 0}"
                       th:text="${#lists.size(question.answerList)}">
-                <!--list.size(이터러블_객체_는 '이터러블_객체'의 사이즈를 리턴하는 타임리프의 기능이다-->
                 </span>
             </td>
-            <!--|{}| /question/detail/ 문자열과 ${question.id}와 같은 자바 객체의 값을 더할 때 반드시 필요하다-->
             <td><span th:if="${question.author != null}" th:text="${question.author.username}"></span></td>
             <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
         </tr>

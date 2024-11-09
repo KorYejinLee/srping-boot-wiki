@@ -15,7 +15,6 @@ public class MainController {
 
     @GetMapping("/")
     public String root() {
-        return "redirect:/question/list"; // /question/list URL로 페이지를 리다이렉트하라는 명령어
-        // 여기서 리다이렉트란 클라이언트가 요청하면 새로운 URL을 전송하는 것을 의미한다
+        return "redirect:/question/list";
     }
 }
